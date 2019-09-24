@@ -19,12 +19,12 @@ const demos = [
   },
 ];
 
-const DEFAULT_SPEC = 'openapi.yaml';
+const DEFAULT_SPEC = 'pt.yaml';
 
 class DemoApp extends React.Component<
   {},
   { specUrl: string; dropdownOpen: boolean; cors: boolean }
-> {
+  > {
   constructor(props) {
     super(props);
 
@@ -104,7 +104,7 @@ class DemoApp extends React.Component<
             height="30px"
           />
         </Heading>
-        <RedocStandalone specUrl={proxiedUrl} options={{ scrollYOffset: 'nav' }} />
+        <RedocStandalone specUrl={proxiedUrl} options={{ scrollYOffset: 'nav', hideSingleRequestSampleTab: true, pathInMiddlePanel: true, nativeScrollbars: true, jsonSampleExpandLevel: 3, expandResponses: 'all', swaggerHubStyle: true }} />
       </>
     );
   }

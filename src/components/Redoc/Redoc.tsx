@@ -59,7 +59,7 @@ export class Redoc extends React.Component<RedocProps> {
                 <ApiInfo store={store} />
                 <ContentItems items={menu.items as any} />
               </ApiContentWrap>
-              <BackgroundStub />
+              {options.swaggerHubStyle ? <></> : <BackgroundStub />}
             </RedocWrap>
           </OptionsProvider>
         </StoreProvider>

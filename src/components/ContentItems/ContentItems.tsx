@@ -4,10 +4,14 @@ import * as React from 'react';
 import { ExternalDocumentation } from '../ExternalDocumentation/ExternalDocumentation';
 import { AdvancedMarkdown } from '../Markdown/AdvancedMarkdown';
 
-import { H1, H2, MiddlePanel, Row, Section, ShareLink } from '../../common-elements';
+import { Badge, H1, H2, MiddlePanel, Row, Section, ShelfIcon } from '../../common-elements';
+import { ShareLink } from '../../common-elements/linkify';
 import { ContentItemModel } from '../../services/MenuBuilder';
 import { GroupModel, OperationModel } from '../../services/models';
+import styled from '../../styled-components';
 import { Operation } from '../Operation/Operation';
+import { OperationBadge } from '../SideMenu';
+import { OptionsContext } from '../OptionsProvider';
 
 @observer
 export class ContentItems extends React.Component<{
@@ -50,7 +54,7 @@ export class ContentItem extends React.Component<ContentItemProps> {
     return (
       <>
         {content && (
-          <Section id={item.id} underlined={item.type === 'operation'}>
+          <Section id={item.id} underlined={false && item.type === 'operation'} tightSpacing={item.type === 'operation'}>
             {content}
           </Section>
         )}
@@ -91,11 +95,90 @@ export class SectionItem extends React.Component<ContentItemProps> {
   }
 }
 
+const ExpandableContainer = styled.div`
+  border: 1px ${props => props.theme.colors.border.dark} solid;
+  border-width: 1px 0 1px 0;
+`;
+
+const ExpandableHeader = styled.div`
+  padding: ${props => props.theme.spacing.unit * 2}px ${props => props.theme.spacing.sectionHorizontal}px;
+  cursor: pointer;
+`;
+
+const ExpandableBody = styled.div`
+  padding-bottom: ${props => props.theme.spacing.unit * 2}px;
+`;
+
+const PathH2 = styled(H2)`
+  margin: 0;
+  font-size: 1.2em;
+
+  small {
+    font-size: 85%;
+  }
+`;
+
+const LargeOperationBadge = styled(OperationBadge)`
+  margin-top: 0;
+  font-size: 14px;
+  width: 80px;
+  height: 23px;
+  line-height: 23px;
+  border-radius: 3px;
+  background-position: 0px 0px;
+  margin-top: -1px;
+`;
+
 @observer
 export class OperationItem extends React.Component<{
   item: OperationModel;
-}> {
+}, { expanded: boolean }> {
+  constructor(props: { item: OperationModel; }) {
+    super(props);
+
+    this.state = {
+      expanded: false,
+    };
+  }
   render() {
-    return <Operation operation={this.props.item} />;
+    const operation = this.props.item;
+    const { name: summary, deprecated, path, httpVerb } = operation;
+    const { expanded } = this.state;
+
+    return <>
+      <OptionsContext.Consumer>
+        {options => options.swaggerHubStyle ? <>
+          <ExpandableContainer>
+            <ExpandableHeader onClick={this.toggleExpanded}>
+              <PathH2>
+                <ShareLink to={operation.id} />
+                <ShelfIcon
+                  float={'right'}
+                  color="black"
+                  size={'25px'}
+                  direction={expanded ? 'up' : 'down'}
+                  style={{ marginRight: '-25px' }}
+                />
+                <LargeOperationBadge type={httpVerb}>{httpVerb}</LargeOperationBadge>
+                <code>{path}</code>
+                &nbsp;
+                &nbsp;
+                {deprecated && <Badge type="warning"> Deprecated </Badge>}
+
+                {!options.hideSummary && summary.trim().length > 0 ? <><br /><small>{summary || ''}</small></> : <></>}
+              </PathH2>
+            </ExpandableHeader>
+            {expanded ? <ExpandableBody>
+              <Operation operation={operation} />
+            </ExpandableBody> : <></>}
+          </ExpandableContainer>
+        </> : <Operation operation={operation} />
+        }
+      </OptionsContext.Consumer>
+    </>;
+  }
+
+  toggleExpanded = (_: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    this.setState({ expanded: !this.state.expanded });
   }
 }

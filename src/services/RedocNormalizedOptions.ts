@@ -37,6 +37,8 @@ export interface RedocRawOptions {
   enumSkipQuotes?: boolean | string;
 
   expandDefaultServerVariables?: boolean;
+  swaggerHubStyle?: boolean;
+  hideSummary?: boolean;
 }
 
 function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -159,6 +161,8 @@ export class RedocNormalizedOptions {
   menuToggle: boolean;
   jsonSampleExpandLevel: number;
   enumSkipQuotes: boolean;
+  swaggerHubStyle: boolean;
+  hideSummary: boolean;
   hideSchemaTitles: boolean;
   payloadSampleIdx: number;
   expandSingleSchemaField: boolean;
@@ -210,5 +214,7 @@ export class RedocNormalizedOptions {
     this.allowedMdComponents = raw.allowedMdComponents || {};
 
     this.expandDefaultServerVariables = argValueToBoolean(raw.expandDefaultServerVariables);
+    this.swaggerHubStyle = argValueToBoolean(raw.swaggerHubStyle);
+    this.hideSummary = argValueToBoolean(raw.hideSummary);
   }
 }

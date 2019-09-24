@@ -8,6 +8,7 @@ import { Redoc, RedocProps } from '../../src/components/Redoc/Redoc';
 import { AppStore } from '../../src/services/AppStore';
 import { RedocRawOptions } from '../../src/services/RedocNormalizedOptions';
 import { loadAndBundleSpec } from '../../src/utils/loadAndBundleSpec';
+import { ResolvedThemeInterface, AdvancedThemeObject } from '../../src/theme';
 
 const renderRoot = (props: RedocProps) =>
   render(
@@ -23,10 +24,33 @@ const swagger = window.location.search.indexOf('swagger') > -1;
 const userUrl = window.location.search.match(/url=(.*)$/);
 
 const specUrl =
-  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'openapi.yaml');
+  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'pt.yaml');
 
 let store;
-const options: RedocRawOptions = { nativeScrollbars: false };
+const options: RedocRawOptions = {
+  nativeScrollbars: true,
+  hideSingleRequestSampleTab: true,
+  pathInMiddlePanel: true,
+  jsonSampleExpandLevel: 3,
+  expandResponses: '2XX,200,201',
+  onlyRequiredInSamples: true,
+  swaggerHubStyle: true,
+  hideSummary: false,
+  theme: ({
+    colors: {
+      primary: {
+        main: '#32329f'
+      }
+    },
+    typography: {
+      headings: {
+        fontFamily: '"Open Sans", sans-serif',
+        fontWeight: '400',
+        lineHeight: '1.6em',
+      },
+    }
+  } as AdvancedThemeObject<ResolvedThemeInterface>)
+};
 
 async function init() {
   const spec = await loadAndBundleSpec(specUrl);

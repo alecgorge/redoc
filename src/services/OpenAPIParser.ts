@@ -202,7 +202,7 @@ export class OpenAPIParser {
       ...schema,
       allOf: undefined,
       parentRefs: [],
-      title: schema.title || (isNamedDefinition($ref) ? JsonPointer.baseName($ref) : undefined),
+      title: schema.title || (isNamedDefinition($ref) ? this.deref({ $ref, title: null }).title || JsonPointer.baseName($ref) : undefined),
     };
 
     // avoid mutating inner objects
@@ -226,11 +226,13 @@ export class OpenAPIParser {
         return {
           $ref: subRef,
           schema: subMerged,
+          title: resolved.title,
         };
       })
       .filter(child => child !== undefined) as Array<{
       $ref: string | undefined;
       schema: MergedOpenAPISchema;
+      title: string;
     }>;
 
     for (const { $ref: subSchemaRef, schema: subSchema } of allOfSchemas) {
@@ -333,12 +335,14 @@ export class OpenAPIParser {
             const merged = this.mergeAllOf({
               allOf: [...beforeAllOf, part, ...afterAllOf],
             });
+            merged.title = part.title || this.deref(part).title;
 
             // each oneOf should be independent so exiting all the parent refs
             // otherwise it will cause false-positive recursive detection
             this.exitParents(merged);
             return merged;
           }),
+          title: sub.title || this.deref(sub).title || schema.title,
         };
       }
     }
