@@ -22,7 +22,7 @@ const swagger = window.location.search.indexOf('swagger') > -1;
 const userUrl = window.location.search.match(/url=(.*)$/);
 
 const specUrl =
-  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'openapi.yaml');
+  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'pt.yaml');
 
 let store;
 const options: RedocRawOptions = { nativeScrollbars: false };

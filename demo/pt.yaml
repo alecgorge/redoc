@@ -1,0 +1,3174 @@
+---
+openapi: 3.0.2
+info:
+  title: Prime Trust API
+  description: ''
+  version: '2019-09-20'
+paths:
+  "/v2/contacts":
+    get:
+      tags:
+      - contacts
+      operationId: GET__v2_contacts
+      summary: GET /v2/contacts
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                "$ref": "#/components/schemas/contacts__response_wrapper_array"
+      parameters:
+      - name: filter
+        in: query
+        explode: true
+        style: deepObject
+        schema:
+          "$ref": "#/components/schemas/contacts__filter"
+      - name: sort
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__sort"
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - name: page
+        in: query
+        explode: true
+        style: deepObject
+        schema:
+          "$ref": "#/components/schemas/page"
+  "/v2/contacts/{contact_id}":
+    post:
+      tags:
+      - contacts
+      operationId: POST__v2_contacts_contact_id_
+      summary: POST /v2/contacts/{contact_id}
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              "$ref": "#/components/schemas/contacts__create_primary"
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/contacts__response"
+                  included:
+                    "$ref": "#/components/schemas/contacts__included"
+                required:
+                - data
+                - included
+      parameters:
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - style: simple
+        in: path
+        name: contact_id
+        required: true
+        schema:
+          "$ref": "#/components/schemas/types__uuid_v4"
+      - "$ref": "#/components/parameters/idempotent_param"
+    patch:
+      tags:
+      - contacts
+      operationId: PATCH__v2_contacts_contact_id_
+      summary: PATCH /v2/contacts/{contact_id}
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              "$ref": "#/components/schemas/contacts__update"
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/contacts__response"
+                  included:
+                    "$ref": "#/components/schemas/contacts__included"
+                required:
+                - data
+                - included
+      parameters:
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - style: simple
+        in: path
+        name: contact_id
+        required: true
+        schema:
+          "$ref": "#/components/schemas/types__uuid_v4"
+      - "$ref": "#/components/parameters/idempotent_param"
+    delete:
+      tags:
+      - contacts
+      operationId: DELETE__v2_contacts_contact_id_
+      summary: DELETE /v2/contacts/{contact_id}
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/contacts__response"
+                  included:
+                    "$ref": "#/components/schemas/contacts__included"
+                required:
+                - data
+                - included
+      parameters:
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - style: simple
+        in: path
+        name: contact_id
+        required: true
+        schema:
+          "$ref": "#/components/schemas/types__uuid_v4"
+      - "$ref": "#/components/parameters/idempotent_param"
+  "/v2/contacts/{contact_id}/sandbox":
+    patch:
+      tags:
+      - contacts
+      - sandbox
+      operationId: PATCH__v2_contacts_contact_id_sandbox
+      summary: Update Contact (Sandbox)
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              "$ref": "#/components/schemas/contacts__sandbox__update"
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/contacts__response"
+                  included:
+                    "$ref": "#/components/schemas/contacts__included"
+                required:
+                - data
+                - included
+      parameters:
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - style: simple
+        in: path
+        name: contact_id
+        required: true
+        schema:
+          "$ref": "#/components/schemas/types__uuid_v4"
+      - "$ref": "#/components/parameters/idempotent_param"
+  "/v2/contacts/{contact_id}/related-from-contacts":
+    get:
+      tags:
+      - contacts
+      operationId: GET__v2_contacts_contact_id_related_from_contacts
+      summary: GET /v2/contacts/{contact_id}/related-from-contacts
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                "$ref": "#/components/schemas/contacts__response_wrapper_array"
+      parameters:
+      - name: filter
+        in: query
+        explode: true
+        style: deepObject
+        schema:
+          "$ref": "#/components/schemas/contacts__filter"
+      - name: sort
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__sort"
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - name: page
+        in: query
+        explode: true
+        style: deepObject
+        schema:
+          "$ref": "#/components/schemas/page"
+      - style: simple
+        in: path
+        name: contact_id
+        required: true
+        schema:
+          "$ref": "#/components/schemas/types__uuid_v4"
+  "/v2/contacts/{contact_id}/related-to-contacts":
+    get:
+      tags:
+      - contacts
+      operationId: GET__v2_contacts_contact_id_related_to_contacts
+      summary: GET /v2/contacts/{contact_id}/related-to-contacts
+      responses:
+        2XX:
+          description: ''
+          content:
+            application/vnd.api+json:
+              schema:
+                "$ref": "#/components/schemas/contacts__response_wrapper_array"
+      parameters:
+      - name: filter
+        in: query
+        explode: true
+        style: deepObject
+        schema:
+          "$ref": "#/components/schemas/contacts__filter"
+      - name: sort
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__sort"
+      - name: include
+        in: query
+        explode: false
+        style: form
+        schema:
+          "$ref": "#/components/schemas/contacts__include"
+      - name: page
+        in: query
+        explode: true
+        style: deepObject
+        schema:
+          "$ref": "#/components/schemas/page"
+      - style: simple
+        in: path
+        name: contact_id
+        required: true
+        schema:
+          "$ref": "#/components/schemas/types__uuid_v4"
+components:
+  schemas:
+    enums__country_codes_non_us:
+      type: string
+      title: 'Enums: Country Codes Non Us'
+      enum:
+      - AD
+      - AE
+      - AF
+      - AG
+      - AI
+      - AL
+      - AM
+      - AO
+      - AQ
+      - AR
+      - AS
+      - AT
+      - AU
+      - AW
+      - AX
+      - AZ
+      - BA
+      - BB
+      - BD
+      - BE
+      - BF
+      - BG
+      - BH
+      - BI
+      - BJ
+      - BL
+      - BM
+      - BN
+      - BO
+      - BQ
+      - BR
+      - BS
+      - BT
+      - BV
+      - BW
+      - BY
+      - BZ
+      - CA
+      - CC
+      - CD
+      - CF
+      - CG
+      - CH
+      - CI
+      - CK
+      - CL
+      - CM
+      - CN
+      - CO
+      - CR
+      - CU
+      - CV
+      - CW
+      - CX
+      - CY
+      - CZ
+      - DE
+      - DJ
+      - DK
+      - DM
+      - DO
+      - DZ
+      - EC
+      - EE
+      - EG
+      - EH
+      - ER
+      - ES
+      - ET
+      - FI
+      - FJ
+      - FK
+      - FM
+      - FO
+      - FR
+      - GA
+      - GB
+      - GD
+      - GE
+      - GF
+      - GG
+      - GH
+      - GI
+      - GL
+      - GM
+      - GN
+      - GP
+      - GQ
+      - GR
+      - GS
+      - GT
+      - GU
+      - GW
+      - GY
+      - HK
+      - HM
+      - HN
+      - HR
+      - HT
+      - HU
+      - ID
+      - IE
+      - IL
+      - IM
+      - IN
+      - IO
+      - IQ
+      - IR
+      - IS
+      - IT
+      - JE
+      - JM
+      - JO
+      - JP
+      - KE
+      - KG
+      - KH
+      - KI
+      - KM
+      - KN
+      - KP
+      - KR
+      - KW
+      - KY
+      - KZ
+      - LA
+      - LB
+      - LC
+      - LI
+      - LK
+      - LR
+      - LS
+      - LT
+      - LU
+      - LV
+      - LY
+      - MA
+      - MC
+      - MD
+      - ME
+      - MF
+      - MG
+      - MH
+      - MK
+      - ML
+      - MM
+      - MN
+      - MO
+      - MP
+      - MQ
+      - MR
+      - MS
+      - MT
+      - MU
+      - MV
+      - MW
+      - MX
+      - MY
+      - MZ
+      - NA
+      - NC
+      - NE
+      - NF
+      - NG
+      - NI
+      - NL
+      - 'NO'
+      - NP
+      - NR
+      - NU
+      - NZ
+      - OM
+      - PA
+      - PE
+      - PF
+      - PG
+      - PH
+      - PK
+      - PL
+      - PM
+      - PN
+      - PR
+      - PS
+      - PT
+      - PW
+      - PY
+      - QA
+      - RE
+      - RO
+      - RS
+      - RU
+      - RW
+      - SA
+      - SB
+      - SC
+      - SD
+      - SE
+      - SG
+      - SH
+      - SI
+      - SJ
+      - SK
+      - SL
+      - SM
+      - SN
+      - SO
+      - SR
+      - SS
+      - ST
+      - SV
+      - SX
+      - SY
+      - SZ
+      - TC
+      - TD
+      - TF
+      - TG
+      - TH
+      - TJ
+      - TK
+      - TL
+      - TM
+      - TN
+      - TO
+      - TR
+      - TT
+      - TV
+      - TW
+      - TZ
+      - UA
+      - UG
+      - UM
+      - UY
+      - UZ
+      - VA
+      - VC
+      - VE
+      - VG
+      - VI
+      - VN
+      - VU
+      - WF
+      - WS
+      - YE
+      - YT
+      - ZA
+      - ZM
+      - ZW
+    enums__country_code_us:
+      type: string
+      title: US Country Code
+      enum:
+      - US
+    types__us_zip_code:
+      title: US Zip Code
+      type: string
+      pattern: "^[0-9]{5}(-[0-9]{4})?$"
+    enums__us_state_codes:
+      type: string
+      title: US State Codes
+      enum:
+      - AA
+      - AE
+      - AK
+      - AL
+      - AP
+      - AR
+      - AS
+      - AZ
+      - CA
+      - CO
+      - CT
+      - DC
+      - DE
+      - FL
+      - GA
+      - GU
+      - HI
+      - IA
+      - ID
+      - IL
+      - IN
+      - KS
+      - KY
+      - LA
+      - MA
+      - MD
+      - ME
+      - MI
+      - MN
+      - MO
+      - MP
+      - MS
+      - MT
+      - NC
+      - ND
+      - NE
+      - NH
+      - NJ
+      - NM
+      - NV
+      - NY
+      - OH
+      - OK
+      - OR
+      - PA
+      - PR
+      - RI
+      - SC
+      - SD
+      - TN
+      - TX
+      - UM
+      - UT
+      - VA
+      - VI
+      - VT
+      - WA
+      - WI
+      - WV
+      - WY
+    types__uuid_v4:
+      title: UUIDv4
+      type: string
+      pattern: uuid
+    types__phone_number:
+      title: Phone Number
+      type: string
+      maxLength: 25
+      pattern: phone_number
+    types__email:
+      type: string
+      title: Email Address
+      pattern: email
+    types__date_not_in_future:
+      title: Date (before today)
+      type: string
+      pattern: date
+    enums__gender:
+      type: string
+      title: Gender
+      enum:
+      - male
+      - female
+      - other
+    types__us_tax_id:
+      title: US Tax ID (SSN or EIN)
+      type: string
+      pattern: "^\\d{9}$"
+    enums__country_codes:
+      type: string
+      title: 'Enums: Country Codes'
+      enum:
+      - AD
+      - AE
+      - AF
+      - AG
+      - AI
+      - AL
+      - AM
+      - AO
+      - AQ
+      - AR
+      - AS
+      - AT
+      - AU
+      - AW
+      - AX
+      - AZ
+      - BA
+      - BB
+      - BD
+      - BE
+      - BF
+      - BG
+      - BH
+      - BI
+      - BJ
+      - BL
+      - BM
+      - BN
+      - BO
+      - BQ
+      - BR
+      - BS
+      - BT
+      - BV
+      - BW
+      - BY
+      - BZ
+      - CA
+      - CC
+      - CD
+      - CF
+      - CG
+      - CH
+      - CI
+      - CK
+      - CL
+      - CM
+      - CN
+      - CO
+      - CR
+      - CU
+      - CV
+      - CW
+      - CX
+      - CY
+      - CZ
+      - DE
+      - DJ
+      - DK
+      - DM
+      - DO
+      - DZ
+      - EC
+      - EE
+      - EG
+      - EH
+      - ER
+      - ES
+      - ET
+      - FI
+      - FJ
+      - FK
+      - FM
+      - FO
+      - FR
+      - GA
+      - GB
+      - GD
+      - GE
+      - GF
+      - GG
+      - GH
+      - GI
+      - GL
+      - GM
+      - GN
+      - GP
+      - GQ
+      - GR
+      - GS
+      - GT
+      - GU
+      - GW
+      - GY
+      - HK
+      - HM
+      - HN
+      - HR
+      - HT
+      - HU
+      - ID
+      - IE
+      - IL
+      - IM
+      - IN
+      - IO
+      - IQ
+      - IR
+      - IS
+      - IT
+      - JE
+      - JM
+      - JO
+      - JP
+      - KE
+      - KG
+      - KH
+      - KI
+      - KM
+      - KN
+      - KP
+      - KR
+      - KW
+      - KY
+      - KZ
+      - LA
+      - LB
+      - LC
+      - LI
+      - LK
+      - LR
+      - LS
+      - LT
+      - LU
+      - LV
+      - LY
+      - MA
+      - MC
+      - MD
+      - ME
+      - MF
+      - MG
+      - MH
+      - MK
+      - ML
+      - MM
+      - MN
+      - MO
+      - MP
+      - MQ
+      - MR
+      - MS
+      - MT
+      - MU
+      - MV
+      - MW
+      - MX
+      - MY
+      - MZ
+      - NA
+      - NC
+      - NE
+      - NF
+      - NG
+      - NI
+      - NL
+      - 'NO'
+      - NP
+      - NR
+      - NU
+      - NZ
+      - OM
+      - PA
+      - PE
+      - PF
+      - PG
+      - PH
+      - PK
+      - PL
+      - PM
+      - PN
+      - PR
+      - PS
+      - PT
+      - PW
+      - PY
+      - QA
+      - RE
+      - RO
+      - RS
+      - RU
+      - RW
+      - SA
+      - SB
+      - SC
+      - SD
+      - SE
+      - SG
+      - SH
+      - SI
+      - SJ
+      - SK
+      - SL
+      - SM
+      - SN
+      - SO
+      - SR
+      - SS
+      - ST
+      - SV
+      - SX
+      - SY
+      - SZ
+      - TC
+      - TD
+      - TF
+      - TG
+      - TH
+      - TJ
+      - TK
+      - TL
+      - TM
+      - TN
+      - TO
+      - TR
+      - TT
+      - TV
+      - TW
+      - TZ
+      - UA
+      - UG
+      - UM
+      - US
+      - UY
+      - UZ
+      - VA
+      - VC
+      - VE
+      - VG
+      - VI
+      - VN
+      - VU
+      - WF
+      - WS
+      - YE
+      - YT
+      - ZA
+      - ZM
+      - ZW
+    enums__account_roles_create:
+      type: string
+      title: Account Roles
+      enum:
+      - beneficiary
+      - grantor
+      - owner
+    contacts__account_role:
+      type: string
+      title: Contact Account Role
+      enum:
+      - tax form recipient
+      - other interested party
+      - grantor
+      - principal
+      - beneficiary
+      - authorized signer
+      - 1042-s income payer
+      - owner
+    contacts__type:
+      type: string
+      title: Contact Type
+      enum:
+      - c_corp
+      - company
+      - llc
+      - natural_person
+      - s_corp
+      - trust
+    contacts__type_company:
+      type: string
+      title: Contact Type (Company)
+      enum:
+      - c_corp
+      - company
+      - llc
+      - s_corp
+      - trust
+    contacts__type_legacy:
+      type: string
+      title: Contact Type (Legacy)
+      enum:
+      - c-corp
+      - company
+      - llc
+      - natural-person
+      - s-corp
+      - trust
+    types__ipv4_address:
+      title: IPv4 Address
+      type: string
+      pattern: ipv4
+    enums__funds_transfer_type:
+      type: string
+      title: 'Enums: Funds Transfer Type'
+      enum:
+      - ach
+      - check
+      - credit_card
+      - wire
+      - wire_international
+    types__date:
+      title: Date
+      type: string
+      pattern: date
+    types__datetime:
+      title: Date with Time
+      type: string
+      pattern: date-time
+    types__int:
+      title: Integer
+      type: integer
+    addresses__update:
+      title: 'Addresses: Update'
+      oneOf:
+      - type: object
+        properties:
+          city:
+            type: string
+          country:
+            "$ref": "#/components/schemas/enums__country_code_us"
+          postal_code:
+            "$ref": "#/components/schemas/types__us_zip_code"
+          region:
+            "$ref": "#/components/schemas/enums__us_state_codes"
+          street_1:
+            type: string
+          street_2:
+            type: string
+        required:
+        - city
+        - country
+        - street_1
+        title: US Address
+      - type: object
+        properties:
+          city:
+            type: string
+          country:
+            "$ref": "#/components/schemas/enums__country_codes_non_us"
+          postal_code:
+            type: string
+          region:
+            type: string
+          street_1:
+            type: string
+          street_2:
+            type: string
+        required:
+        - city
+        - country
+        - street_1
+        title: Non-US Address
+    addresses__create:
+      title: 'Addresses: Create'
+      allOf:
+      - oneOf:
+        - type: object
+          properties:
+            city:
+              type: string
+            country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            postal_code:
+              "$ref": "#/components/schemas/types__us_zip_code"
+            region:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+            street_1:
+              type: string
+            street_2:
+              type: string
+          required:
+          - city
+          - country
+          - street_1
+          title: US Address
+        - type: object
+          properties:
+            city:
+              type: string
+            country:
+              "$ref": "#/components/schemas/enums__country_codes_non_us"
+            postal_code:
+              type: string
+            region:
+              type: string
+            street_1:
+              type: string
+            street_2:
+              type: string
+          required:
+          - city
+          - country
+          - street_1
+          title: Non-US Address
+        discriminator:
+          propertyName: country
+        title: Address
+      - type: object
+        properties:
+          contact_id:
+            "$ref": "#/components/schemas/types__uuid_v4"
+        title: Contact ID
+    phone_numbers__update:
+      title: 'Phone Numbers: Update'
+      type: object
+      properties:
+        number:
+          "$ref": "#/components/schemas/types__phone_number"
+        sms:
+          type: boolean
+      required:
+      - number
+    phone_numbers__create:
+      title: 'Phone Numbers: Create'
+      type: object
+      properties:
+        number:
+          "$ref": "#/components/schemas/types__phone_number"
+        sms:
+          type: boolean
+      required:
+      - number
+    contacts__update__natural_person:
+      title: 'Contacts: Update: Natural Person'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            type: string
+            enum:
+            - natural_person
+          date_of_birth:
+            "$ref": "#/components/schemas/types__date_not_in_future"
+          sex:
+            "$ref": "#/components/schemas/enums__gender"
+        required:
+        - contact_type
+        - date_of_birth
+        - sex
+        title: Natural Person Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__update__company:
+      title: 'Contacts: Update: Company'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            "$ref": "#/components/schemas/contacts__type_company"
+          region_of_formation:
+            "$ref": "#/components/schemas/enums__us_state_codes"
+        required:
+        - contact_type
+        - region_of_formation
+        title: Company Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__update:
+      title: 'Contacts: Update'
+      oneOf:
+      - "$ref": "#/components/schemas/contacts__update__natural_person"
+      - "$ref": "#/components/schemas/contacts__update__company"
+      discriminator:
+        propertyName: contact_type
+    contacts__create__natural_person:
+      title: 'Contacts: Create: Natural Person'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            type: string
+            enum:
+            - natural_person
+          date_of_birth:
+            "$ref": "#/components/schemas/types__date_not_in_future"
+          sex:
+            "$ref": "#/components/schemas/enums__gender"
+        required:
+        - contact_type
+        - date_of_birth
+        - sex
+        title: Natural Person Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create__company:
+      title: 'Contacts: Create: Company'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            "$ref": "#/components/schemas/contacts__type_company"
+          region_of_formation:
+            "$ref": "#/components/schemas/enums__us_state_codes"
+        required:
+        - contact_type
+        - region_of_formation
+        title: Company Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create:
+      title: 'Contacts: Create'
+      oneOf:
+      - "$ref": "#/components/schemas/contacts__create__natural_person"
+      - "$ref": "#/components/schemas/contacts__create__company"
+      discriminator:
+        propertyName: contact_type
+    contacts__create_related__natural_person:
+      title: 'Contacts: Create Related: Natural Person'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            type: string
+            enum:
+            - natural_person
+          date_of_birth:
+            "$ref": "#/components/schemas/types__date_not_in_future"
+          sex:
+            "$ref": "#/components/schemas/enums__gender"
+        required:
+        - contact_type
+        - date_of_birth
+        - sex
+        title: Natural Person Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          required:
+          - tax_country
+          - tax_id_number
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create_related__company:
+      title: 'Contacts: Create Related: Company'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            "$ref": "#/components/schemas/contacts__type_company"
+          region_of_formation:
+            "$ref": "#/components/schemas/enums__us_state_codes"
+        required:
+        - contact_type
+        - region_of_formation
+        title: Company Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          required:
+          - tax_country
+          - tax_id_number
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create_related:
+      title: 'Contacts: Create Related'
+      allOf:
+      - oneOf:
+        - "$ref": "#/components/schemas/contacts__create_related__natural_person"
+        - "$ref": "#/components/schemas/contacts__create_related__company"
+        discriminator:
+          propertyName: contact_type
+        title: 'Contacts: Create Related'
+      - type: object
+        properties:
+          label:
+            type: string
+          primary:
+            type: boolean
+        required:
+        - label
+        title: Related Contact Attributes
+    contacts__create_new_account__natural_person:
+      title: 'Contacts: Create New Account: Natural Person'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            type: string
+            enum:
+            - natural_person
+          date_of_birth:
+            "$ref": "#/components/schemas/types__date_not_in_future"
+          sex:
+            "$ref": "#/components/schemas/enums__gender"
+        required:
+        - contact_type
+        - date_of_birth
+        - sex
+        title: Natural Person Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          required:
+          - tax_country
+          - tax_id_number
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create_new_account__company:
+      title: 'Contacts: Create New Account: Company'
+      allOf:
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            "$ref": "#/components/schemas/contacts__type_company"
+          region_of_formation:
+            "$ref": "#/components/schemas/enums__us_state_codes"
+        required:
+        - contact_type
+        - region_of_formation
+        title: Company Attributes
+      - type: object
+        properties:
+          related_contacts:
+            type: array
+            items:
+              "$ref": "#/components/schemas/contacts__create_related"
+        required:
+        - related_contacts
+        title: Related Contacts
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          required:
+          - tax_country
+          - tax_id_number
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create_new_account:
+      title: 'Contacts: Create with New Account'
+      oneOf:
+      - "$ref": "#/components/schemas/contacts__create_new_account__natural_person"
+      - "$ref": "#/components/schemas/contacts__create_new_account__company"
+      discriminator:
+        propertyName: contact_type
+    contacts__create_primary__natural_person:
+      title: 'Contacts: Create Primary: Natural Person'
+      allOf:
+      - type: object
+        properties:
+          account_id:
+            "$ref": "#/components/schemas/types__uuid_v4"
+          account_roles:
+            "$ref": "#/components/schemas/enums__account_roles_create"
+        required:
+        - account_id
+        - account_roles
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            type: string
+            enum:
+            - natural_person
+          date_of_birth:
+            "$ref": "#/components/schemas/types__date_not_in_future"
+          sex:
+            "$ref": "#/components/schemas/enums__gender"
+        required:
+        - contact_type
+        - date_of_birth
+        - sex
+        title: Natural Person Attributes
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          required:
+          - tax_country
+          - tax_id_number
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create_primary__company:
+      title: 'Contacts: Create Primary: Company'
+      allOf:
+      - type: object
+        properties:
+          account_id:
+            "$ref": "#/components/schemas/types__uuid_v4"
+          account_roles:
+            "$ref": "#/components/schemas/enums__account_roles_create"
+        required:
+        - account_id
+        - account_roles
+      - type: object
+        properties:
+          email:
+            "$ref": "#/components/schemas/types__email"
+          name:
+            type: string
+            maxLength: 80
+          primary_address:
+            "$ref": "#/components/schemas/addresses__create"
+          primary_phone_number:
+            "$ref": "#/components/schemas/phone_numbers__create"
+        required:
+        - email
+        - name
+        - primary_address
+        - primary_phone_number
+        title: Base Attributes
+      - type: object
+        properties:
+          contact_type:
+            "$ref": "#/components/schemas/contacts__type_company"
+          region_of_formation:
+            "$ref": "#/components/schemas/enums__us_state_codes"
+        required:
+        - contact_type
+        - region_of_formation
+        title: Company Attributes
+      - type: object
+        properties:
+          related_contacts:
+            type: array
+            items:
+              "$ref": "#/components/schemas/contacts__create_related"
+        required:
+        - related_contacts
+        title: Related Contacts
+      - oneOf:
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_code_us"
+            tax_id_number:
+              "$ref": "#/components/schemas/types__us_tax_id"
+            tax_state:
+              "$ref": "#/components/schemas/enums__us_state_codes"
+          required:
+          - tax_country
+          - tax_id_number
+          - tax_state
+          title: US Tax Information
+        - type: object
+          properties:
+            tax_country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax_id_number:
+              type: string
+          required:
+          - tax_country
+          - tax_id_number
+          title: Non-US Tax Information
+        discriminator:
+          propertyName: tax_country
+        title: Tax Information
+    contacts__create_primary:
+      title: 'Contacts: Create Primary'
+      oneOf:
+      - "$ref": "#/components/schemas/contacts__create_primary__natural_person"
+      - "$ref": "#/components/schemas/contacts__create_primary__company"
+      discriminator:
+        propertyName: contact_type
+    contacts__sandbox__update:
+      title: 'Contacts: Sandbox: Update'
+      type: object
+      properties:
+        cip_cleared:
+          type: boolean
+        aml_cleared:
+          type: boolean
+    funds_transfer_methods__related_addresses:
+      title: 'Funds Transfer Methods: Related Addresses'
+      allOf:
+      - oneOf:
+        - type: object
+          properties:
+            beneficiary_address:
+              "$ref": "#/components/schemas/addresses__create"
+          required:
+          - beneficiary_address
+          title: Inline Beneficiary Address
+        - type: object
+          properties:
+            beneficiary_address_id:
+              "$ref": "#/components/schemas/types__uuid_v4"
+          required:
+          - beneficiary_address_id
+          title: Beneficiary Address ID
+        title: Beneficiary Address
+      - oneOf:
+        - type: object
+          properties:
+            intermediary_bank_address:
+              "$ref": "#/components/schemas/addresses__create"
+          required:
+          - intermediary_bank_address
+          title: Inline Intermediary Bank Address
+        - type: object
+          properties:
+            intermediary_bank_address_id:
+              "$ref": "#/components/schemas/types__uuid_v4"
+          required:
+          - intermediary_bank_address_id
+          title: Intermediary Bank Address ID
+        title: Intermediary Bank Address
+      - oneOf:
+        - type: object
+          properties:
+            mailing_address:
+              "$ref": "#/components/schemas/addresses__create"
+          required:
+          - mailing_address
+          title: Inline Mailing Address
+        - type: object
+          properties:
+            mailing_address_id:
+              "$ref": "#/components/schemas/types__uuid_v4"
+          required:
+          - mailing_address_id
+          title: Mailing Address ID
+        title: Mailing Address
+    funds_transfer_methods__create:
+      title: 'Funds Transfer Methods: Create'
+      allOf:
+      - "$ref": "#/components/schemas/funds_transfer_methods__related_addresses"
+      - oneOf:
+        - type: object
+          properties:
+            contact_email:
+              "$ref": "#/components/schemas/types__email"
+            contact_name:
+              type: string
+          required:
+          - contact_email
+          - contact_name
+          title: Inline Contact Info
+        - type: object
+          properties:
+            contact_id:
+              "$ref": "#/components/schemas/types__uuid_v4"
+          required:
+          - contact_id
+          title: Contact ID
+        title: Contact
+      - type: object
+        properties:
+          ip_address:
+            "$ref": "#/components/schemas/types__ipv4_address"
+        title: Ip Address
+    funds_transfer_methods__transfer_type:
+      title: Funds Transfer Type
+      type: object
+      properties:
+        funds_transfer_type:
+          "$ref": "#/components/schemas/enums__funds_transfer_type"
+      required:
+      - funds_transfer_type
+    contacts__included:
+      title: Included Relationships
+      anyOf: []
+    contacts__response:
+      title: Contact
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - contacts
+        id:
+          "$ref": "#/components/schemas/types__uuid_v4"
+        attributes:
+          type: object
+          properties:
+            id:
+              "$ref": "#/components/schemas/types__uuid_v4"
+            account-roles:
+              type: array
+              items:
+                "$ref": "#/components/schemas/contacts__account_role"
+            aml-cleared:
+              type: boolean
+            cip-cleared:
+              type: boolean
+            contact-type:
+              "$ref": "#/components/schemas/contacts__type"
+            date-of-birth:
+              "$ref": "#/components/schemas/types__date"
+            email:
+              type: string
+            identity-confirmed:
+              type: boolean
+            identity-documents-verified:
+              type: boolean
+            name:
+              type: string
+            proof-of-address-documents-verified:
+              type: boolean
+            region-of-formation:
+              nullable: true
+              type: string
+            sex:
+              nullable: true
+              type: string
+            tax-country:
+              "$ref": "#/components/schemas/enums__country_codes"
+            tax-id-number:
+              type: string
+            tax-state:
+              type: string
+            type:
+              "$ref": "#/components/schemas/contacts__type_legacy"
+            created-at:
+              "$ref": "#/components/schemas/types__datetime"
+            updated-at:
+              "$ref": "#/components/schemas/types__datetime"
+          required:
+          - id
+          - account-roles
+          - aml-cleared
+          - cip-cleared
+          - contact-type
+          - date-of-birth
+          - email
+          - identity-confirmed
+          - identity-documents-verified
+          - name
+          - proof-of-address-documents-verified
+          - region-of-formation
+          - sex
+          - tax-country
+          - tax-id-number
+          - tax-state
+          - type
+          - created-at
+          - updated-at
+          title: Contact Attributes
+        relationships:
+          type: object
+          properties:
+            addresses:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Addresses: Links'
+            aml-checks:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Aml Checks: Links'
+            asset-transfers:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Asset Transfers: Links'
+            asset-transfer-methods:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Asset Transfer Methods: Links'
+            cip-checks:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Cip Checks: Links'
+            contact-funds-transfer-references:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Contact Funds Transfer References: Links'
+            contributions:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Contributions: Links'
+            disbursements:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Disbursements: Links'
+            from-contact-relationships:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: From Contact Relationships: Links'
+            funds-transfer-methods:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Funds Transfer Methods: Links'
+            funds-transfers:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Funds Transfers: Links'
+            kyc-document-checks:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Kyc Document Checks: Links'
+            payment-methods:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Payment Methods: Links'
+            phone-numbers:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Phone Numbers: Links'
+            related-from-contacts:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Related From Contacts: Links'
+            related-to-contacts:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Related To Contacts: Links'
+            to-contact-relationships:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: To Contact Relationships: Links'
+            uploaded-documents:
+              type: object
+              properties:
+                links:
+                  type: object
+                  properties:
+                    related:
+                      type: string
+                  required:
+                  - related
+              required:
+              - links
+              title: 'Contact: Uploaded Documents: Links'
+            account:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Account: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - accounts
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Account: Data'
+              title: Relationship Links or Data
+            primary-address:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Primary Address: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - addresses
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Primary Address: Data'
+              title: Relationship Links or Data
+            primary-contact:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Primary Contact: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - contacts
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Primary Contact: Data'
+              title: Relationship Links or Data
+            primary-phone-number:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Primary Phone Number: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - phone_numbers
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Primary Phone Number: Data'
+              title: Relationship Links or Data
+            latest-cip-check:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Latest Cip Check: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - cip_checks
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Latest Cip Check: Data'
+              title: Relationship Links or Data
+            latest-aml-check:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Latest Aml Check: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - aml_checks
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Latest Aml Check: Data'
+              title: Relationship Links or Data
+            latest-kyc-document-check:
+              oneOf:
+              - type: object
+                properties:
+                  links:
+                    type: object
+                    properties:
+                      related:
+                        type: string
+                    required:
+                    - related
+                required:
+                - links
+                title: 'Contact: Latest Kyc Document Check: Links'
+              - type: object
+                properties:
+                  data:
+                    nullable: true
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - kyc_document_checks
+                      id:
+                        "$ref": "#/components/schemas/types__uuid_v4"
+                    required:
+                    - type
+                    - id
+                required:
+                - data
+                title: 'Contact: Latest Kyc Document Check: Data'
+              title: Relationship Links or Data
+          required:
+          - addresses
+          - aml-checks
+          - asset-transfers
+          - asset-transfer-methods
+          - cip-checks
+          - contact-funds-transfer-references
+          - contributions
+          - disbursements
+          - from-contact-relationships
+          - funds-transfer-methods
+          - funds-transfers
+          - kyc-document-checks
+          - payment-methods
+          - phone-numbers
+          - related-from-contacts
+          - related-to-contacts
+          - to-contact-relationships
+          - uploaded-documents
+          - account
+          - primary-address
+          - primary-contact
+          - primary-phone-number
+          - latest-cip-check
+          - latest-aml-check
+          - latest-kyc-document-check
+          title: Contact Relationships
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+          required:
+          - self
+          title: Contact Links
+      required:
+      - type
+      - id
+      - attributes
+      - relationships
+      - links
+    contacts__response_wrapper_array:
+      title: 'Contacts: Response Wrapper Array'
+      type: object
+      properties:
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            first:
+              type: string
+            last:
+              type: string
+            next:
+              type: string
+            prev:
+              type: string
+          required:
+          - self
+          - first
+          - last
+        meta:
+          type: object
+          properties:
+            page-count:
+              "$ref": "#/components/schemas/types__int"
+            resource-count:
+              "$ref": "#/components/schemas/types__int"
+          required:
+          - page-count
+          - resource-count
+        data:
+          type: array
+          items:
+            "$ref": "#/components/schemas/contacts__response"
+        included:
+          "$ref": "#/components/schemas/contacts__included"
+      required:
+      - links
+      - meta
+      - data
+      - included
+    contacts__filter:
+      title: Contact Filter
+      type: object
+      properties:
+        id eq:
+          type: string
+        id gt:
+          type: string
+        id gte:
+          type: string
+        id in:
+          type: string
+        id like:
+          type: string
+        id lt:
+          type: string
+        id lte:
+          type: string
+        id neq:
+          type: string
+        id nin:
+          type: string
+        id nlike:
+          type: string
+        id sw:
+          type: string
+        account-roles eq:
+          type: string
+        account-roles gt:
+          type: string
+        account-roles gte:
+          type: string
+        account-roles in:
+          type: string
+        account-roles like:
+          type: string
+        account-roles lt:
+          type: string
+        account-roles lte:
+          type: string
+        account-roles neq:
+          type: string
+        account-roles nin:
+          type: string
+        account-roles nlike:
+          type: string
+        account-roles sw:
+          type: string
+        aml-cleared eq:
+          type: string
+        aml-cleared gt:
+          type: string
+        aml-cleared gte:
+          type: string
+        aml-cleared in:
+          type: string
+        aml-cleared like:
+          type: string
+        aml-cleared lt:
+          type: string
+        aml-cleared lte:
+          type: string
+        aml-cleared neq:
+          type: string
+        aml-cleared nin:
+          type: string
+        aml-cleared nlike:
+          type: string
+        aml-cleared sw:
+          type: string
+        cip-cleared eq:
+          type: string
+        cip-cleared gt:
+          type: string
+        cip-cleared gte:
+          type: string
+        cip-cleared in:
+          type: string
+        cip-cleared like:
+          type: string
+        cip-cleared lt:
+          type: string
+        cip-cleared lte:
+          type: string
+        cip-cleared neq:
+          type: string
+        cip-cleared nin:
+          type: string
+        cip-cleared nlike:
+          type: string
+        cip-cleared sw:
+          type: string
+        contact-type eq:
+          type: string
+        contact-type gt:
+          type: string
+        contact-type gte:
+          type: string
+        contact-type in:
+          type: string
+        contact-type like:
+          type: string
+        contact-type lt:
+          type: string
+        contact-type lte:
+          type: string
+        contact-type neq:
+          type: string
+        contact-type nin:
+          type: string
+        contact-type nlike:
+          type: string
+        contact-type sw:
+          type: string
+        date-of-birth eq:
+          type: string
+        date-of-birth gt:
+          type: string
+        date-of-birth gte:
+          type: string
+        date-of-birth in:
+          type: string
+        date-of-birth like:
+          type: string
+        date-of-birth lt:
+          type: string
+        date-of-birth lte:
+          type: string
+        date-of-birth neq:
+          type: string
+        date-of-birth nin:
+          type: string
+        date-of-birth nlike:
+          type: string
+        date-of-birth sw:
+          type: string
+        email eq:
+          type: string
+        email gt:
+          type: string
+        email gte:
+          type: string
+        email in:
+          type: string
+        email like:
+          type: string
+        email lt:
+          type: string
+        email lte:
+          type: string
+        email neq:
+          type: string
+        email nin:
+          type: string
+        email nlike:
+          type: string
+        email sw:
+          type: string
+        identity-confirmed eq:
+          type: string
+        identity-confirmed gt:
+          type: string
+        identity-confirmed gte:
+          type: string
+        identity-confirmed in:
+          type: string
+        identity-confirmed like:
+          type: string
+        identity-confirmed lt:
+          type: string
+        identity-confirmed lte:
+          type: string
+        identity-confirmed neq:
+          type: string
+        identity-confirmed nin:
+          type: string
+        identity-confirmed nlike:
+          type: string
+        identity-confirmed sw:
+          type: string
+        identity-documents-verified eq:
+          type: string
+        identity-documents-verified gt:
+          type: string
+        identity-documents-verified gte:
+          type: string
+        identity-documents-verified in:
+          type: string
+        identity-documents-verified like:
+          type: string
+        identity-documents-verified lt:
+          type: string
+        identity-documents-verified lte:
+          type: string
+        identity-documents-verified neq:
+          type: string
+        identity-documents-verified nin:
+          type: string
+        identity-documents-verified nlike:
+          type: string
+        identity-documents-verified sw:
+          type: string
+        name eq:
+          type: string
+        name gt:
+          type: string
+        name gte:
+          type: string
+        name in:
+          type: string
+        name like:
+          type: string
+        name lt:
+          type: string
+        name lte:
+          type: string
+        name neq:
+          type: string
+        name nin:
+          type: string
+        name nlike:
+          type: string
+        name sw:
+          type: string
+        proof-of-address-documents-verified eq:
+          type: string
+        proof-of-address-documents-verified gt:
+          type: string
+        proof-of-address-documents-verified gte:
+          type: string
+        proof-of-address-documents-verified in:
+          type: string
+        proof-of-address-documents-verified like:
+          type: string
+        proof-of-address-documents-verified lt:
+          type: string
+        proof-of-address-documents-verified lte:
+          type: string
+        proof-of-address-documents-verified neq:
+          type: string
+        proof-of-address-documents-verified nin:
+          type: string
+        proof-of-address-documents-verified nlike:
+          type: string
+        proof-of-address-documents-verified sw:
+          type: string
+        region-of-formation eq:
+          type: string
+        region-of-formation gt:
+          type: string
+        region-of-formation gte:
+          type: string
+        region-of-formation in:
+          type: string
+        region-of-formation like:
+          type: string
+        region-of-formation lt:
+          type: string
+        region-of-formation lte:
+          type: string
+        region-of-formation neq:
+          type: string
+        region-of-formation nin:
+          type: string
+        region-of-formation nlike:
+          type: string
+        region-of-formation sw:
+          type: string
+        sex eq:
+          type: string
+        sex gt:
+          type: string
+        sex gte:
+          type: string
+        sex in:
+          type: string
+        sex like:
+          type: string
+        sex lt:
+          type: string
+        sex lte:
+          type: string
+        sex neq:
+          type: string
+        sex nin:
+          type: string
+        sex nlike:
+          type: string
+        sex sw:
+          type: string
+        tax-country eq:
+          type: string
+        tax-country gt:
+          type: string
+        tax-country gte:
+          type: string
+        tax-country in:
+          type: string
+        tax-country like:
+          type: string
+        tax-country lt:
+          type: string
+        tax-country lte:
+          type: string
+        tax-country neq:
+          type: string
+        tax-country nin:
+          type: string
+        tax-country nlike:
+          type: string
+        tax-country sw:
+          type: string
+        tax-id-number eq:
+          type: string
+        tax-id-number gt:
+          type: string
+        tax-id-number gte:
+          type: string
+        tax-id-number in:
+          type: string
+        tax-id-number like:
+          type: string
+        tax-id-number lt:
+          type: string
+        tax-id-number lte:
+          type: string
+        tax-id-number neq:
+          type: string
+        tax-id-number nin:
+          type: string
+        tax-id-number nlike:
+          type: string
+        tax-id-number sw:
+          type: string
+        tax-state eq:
+          type: string
+        tax-state gt:
+          type: string
+        tax-state gte:
+          type: string
+        tax-state in:
+          type: string
+        tax-state like:
+          type: string
+        tax-state lt:
+          type: string
+        tax-state lte:
+          type: string
+        tax-state neq:
+          type: string
+        tax-state nin:
+          type: string
+        tax-state nlike:
+          type: string
+        tax-state sw:
+          type: string
+        type eq:
+          type: string
+        type gt:
+          type: string
+        type gte:
+          type: string
+        type in:
+          type: string
+        type like:
+          type: string
+        type lt:
+          type: string
+        type lte:
+          type: string
+        type neq:
+          type: string
+        type nin:
+          type: string
+        type nlike:
+          type: string
+        type sw:
+          type: string
+        created-at eq:
+          type: string
+        created-at gt:
+          type: string
+        created-at gte:
+          type: string
+        created-at in:
+          type: string
+        created-at like:
+          type: string
+        created-at lt:
+          type: string
+        created-at lte:
+          type: string
+        created-at neq:
+          type: string
+        created-at nin:
+          type: string
+        created-at nlike:
+          type: string
+        created-at sw:
+          type: string
+        updated-at eq:
+          type: string
+        updated-at gt:
+          type: string
+        updated-at gte:
+          type: string
+        updated-at in:
+          type: string
+        updated-at like:
+          type: string
+        updated-at lt:
+          type: string
+        updated-at lte:
+          type: string
+        updated-at neq:
+          type: string
+        updated-at nin:
+          type: string
+        updated-at nlike:
+          type: string
+        updated-at sw:
+          type: string
+    contacts__sort:
+      title: Contact Sort
+      type: array
+      items:
+        anyOf:
+        - type: string
+          enum:
+          - id
+          title: Id Ascending
+        - type: string
+          enum:
+          - account-roles
+          title: Account Roles Ascending
+        - type: string
+          enum:
+          - aml-cleared
+          title: Aml Cleared Ascending
+        - type: string
+          enum:
+          - cip-cleared
+          title: Cip Cleared Ascending
+        - type: string
+          enum:
+          - contact-type
+          title: Contact Type Ascending
+        - type: string
+          enum:
+          - date-of-birth
+          title: Date Of Birth Ascending
+        - type: string
+          enum:
+          - email
+          title: Email Ascending
+        - type: string
+          enum:
+          - identity-confirmed
+          title: Identity Confirmed Ascending
+        - type: string
+          enum:
+          - identity-documents-verified
+          title: Identity Documents Verified Ascending
+        - type: string
+          enum:
+          - name
+          title: Name Ascending
+        - type: string
+          enum:
+          - proof-of-address-documents-verified
+          title: Proof Of Address Documents Verified Ascending
+        - type: string
+          enum:
+          - region-of-formation
+          title: Region Of Formation Ascending
+        - type: string
+          enum:
+          - sex
+          title: Sex Ascending
+        - type: string
+          enum:
+          - tax-country
+          title: Tax Country Ascending
+        - type: string
+          enum:
+          - tax-id-number
+          title: Tax Id Number Ascending
+        - type: string
+          enum:
+          - tax-state
+          title: Tax State Ascending
+        - type: string
+          enum:
+          - type
+          title: Type Ascending
+        - type: string
+          enum:
+          - created-at
+          title: Created At Ascending
+        - type: string
+          enum:
+          - updated-at
+          title: Updated At Ascending
+        - type: string
+          enum:
+          - "-id"
+          title: Id Descending
+        - type: string
+          enum:
+          - "-account-roles"
+          title: Account Roles Descending
+        - type: string
+          enum:
+          - "-aml-cleared"
+          title: Aml Cleared Descending
+        - type: string
+          enum:
+          - "-cip-cleared"
+          title: Cip Cleared Descending
+        - type: string
+          enum:
+          - "-contact-type"
+          title: Contact Type Descending
+        - type: string
+          enum:
+          - "-date-of-birth"
+          title: Date Of Birth Descending
+        - type: string
+          enum:
+          - "-email"
+          title: Email Descending
+        - type: string
+          enum:
+          - "-identity-confirmed"
+          title: Identity Confirmed Descending
+        - type: string
+          enum:
+          - "-identity-documents-verified"
+          title: Identity Documents Verified Descending
+        - type: string
+          enum:
+          - "-name"
+          title: Name Descending
+        - type: string
+          enum:
+          - "-proof-of-address-documents-verified"
+          title: Proof Of Address Documents Verified Descending
+        - type: string
+          enum:
+          - "-region-of-formation"
+          title: Region Of Formation Descending
+        - type: string
+          enum:
+          - "-sex"
+          title: Sex Descending
+        - type: string
+          enum:
+          - "-tax-country"
+          title: Tax Country Descending
+        - type: string
+          enum:
+          - "-tax-id-number"
+          title: Tax Id Number Descending
+        - type: string
+          enum:
+          - "-tax-state"
+          title: Tax State Descending
+        - type: string
+          enum:
+          - "-type"
+          title: Type Descending
+        - type: string
+          enum:
+          - "-created-at"
+          title: Created At Descending
+        - type: string
+          enum:
+          - "-updated-at"
+          title: Updated At Descending
+    contacts__include:
+      title: Contact Include
+      type: array
+      items:
+        anyOf:
+        - type: string
+          enum:
+          - addresses
+          title: Addresses
+        - type: string
+          enum:
+          - aml-checks
+          title: Aml Checks
+        - type: string
+          enum:
+          - asset-transfers
+          title: Asset Transfers
+        - type: string
+          enum:
+          - asset-transfer-methods
+          title: Asset Transfer Methods
+        - type: string
+          enum:
+          - cip-checks
+          title: Cip Checks
+        - type: string
+          enum:
+          - contact-funds-transfer-references
+          title: Contact Funds Transfer References
+        - type: string
+          enum:
+          - contributions
+          title: Contributions
+        - type: string
+          enum:
+          - disbursements
+          title: Disbursements
+        - type: string
+          enum:
+          - from-contact-relationships
+          title: From Contact Relationships
+        - type: string
+          enum:
+          - funds-transfer-methods
+          title: Funds Transfer Methods
+        - type: string
+          enum:
+          - funds-transfers
+          title: Funds Transfers
+        - type: string
+          enum:
+          - kyc-document-checks
+          title: Kyc Document Checks
+        - type: string
+          enum:
+          - payment-methods
+          title: Payment Methods
+        - type: string
+          enum:
+          - phone-numbers
+          title: Phone Numbers
+        - type: string
+          enum:
+          - related-from-contacts
+          title: Related From Contacts
+        - type: string
+          enum:
+          - related-to-contacts
+          title: Related To Contacts
+        - type: string
+          enum:
+          - to-contact-relationships
+          title: To Contact Relationships
+        - type: string
+          enum:
+          - uploaded-documents
+          title: Uploaded Documents
+        - type: string
+          enum:
+          - account
+          title: Account
+        - type: string
+          enum:
+          - primary-address
+          title: Primary Address
+        - type: string
+          enum:
+          - primary-contact
+          title: Primary Contact
+        - type: string
+          enum:
+          - primary-phone-number
+          title: Primary Phone Number
+        - type: string
+          enum:
+          - latest-cip-check
+          title: Latest Cip Check
+        - type: string
+          enum:
+          - latest-aml-check
+          title: Latest Aml Check
+        - type: string
+          enum:
+          - latest-kyc-document-check
+          title: Latest Kyc Document Check
+    page:
+      title: Page Number and Size
+      type: object
+      properties:
+        size:
+          type: integer
+          minimum: 1
+          default: 25
+        number:
+          type: integer
+          minimum: 1
+          default: 1
+      required:
+      - size
+      - number
+  parameters:
+    idempotent_param:
+      in: header
+      name: X-Request-ID
+      required: false
+      schema:
+        "$ref": "#/components/schemas/types__uuid_v4"

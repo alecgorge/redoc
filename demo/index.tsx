@@ -19,7 +19,7 @@ const demos = [
   },
 ];
 
-const DEFAULT_SPEC = 'openapi.yaml';
+const DEFAULT_SPEC = 'pt.yaml';
 
 class DemoApp extends React.Component<
   {},
