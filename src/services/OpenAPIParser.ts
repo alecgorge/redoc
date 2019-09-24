@@ -333,12 +333,14 @@ export class OpenAPIParser {
             const merged = this.mergeAllOf({
               allOf: [...beforeAllOf, part, ...afterAllOf],
             });
+            merged.title = part.title;
 
             // each oneOf should be independent so exiting all the parent refs
             // otherwise it will cause false-positive recursive detection
             this.exitParents(merged);
             return merged;
           }),
+          title: sub.title,
         };
       }
     }
