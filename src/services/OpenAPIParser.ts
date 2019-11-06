@@ -202,7 +202,7 @@ export class OpenAPIParser {
       ...schema,
       allOf: undefined,
       parentRefs: [],
-      title: schema.title || (isNamedDefinition($ref) ? this.deref({ $ref: $ref, title: null }).title || JsonPointer.baseName($ref) : undefined),
+      title: schema.title || (isNamedDefinition($ref) ? this.deref({ $ref, title: null }).title || JsonPointer.baseName($ref) : undefined),
     };
 
     // avoid mutating inner objects
