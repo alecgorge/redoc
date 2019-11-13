@@ -48,10 +48,10 @@ export class Operation extends React.Component<OperationProps> {
         {options => (
           <OperationRow>
             <MiddlePanel>
-              <H2>
+              {!options.swaggerHubStyle && <H2>
                 <ShareLink to={operation.id} />
                 {summary} {deprecated && <Badge type="warning"> Deprecated </Badge>}
-              </H2>
+              </H2>}
               {options.pathInMiddlePanel && <Endpoint operation={operation} inverted={true} />}
               {hasDescription && (
                 <Description>

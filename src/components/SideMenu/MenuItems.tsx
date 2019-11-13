@@ -5,6 +5,7 @@ import { IMenuItem } from '../../services';
 
 import { MenuItem } from './MenuItem';
 import { MenuItemUl } from './styled.elements';
+import { OptionsContext } from '../OptionsProvider';
 
 export interface MenuItemsProps {
   items: IMenuItem[];
@@ -22,16 +23,19 @@ export class MenuItems extends React.Component<MenuItemsProps> {
     const { items, root, className } = this.props;
     const expanded = this.props.expanded == null ? true : this.props.expanded;
     return (
-      <MenuItemUl
-        className={className}
-        style={this.props.style}
-        expanded={expanded}
-        {...(root ? { role: 'navigation' } : {})}
-      >
-        {items.map((item, idx) => (
-          <MenuItem key={idx} item={item} onActivate={this.props.onActivate} />
-        ))}
-      </MenuItemUl>
+      <OptionsContext.Consumer>
+        {options => <MenuItemUl
+          className={className}
+          style={this.props.style}
+          expanded={expanded}
+          {...(root ? { role: 'navigation' } : {})}
+        >
+          {items.map((item, idx) => (
+            <MenuItem key={idx} item={item} onActivate={this.props.onActivate} withoutChildren={options.swaggerHubStyle && item.type === 'tag'} />
+          ))}
+        </MenuItemUl>
+        }
+      </OptionsContext.Consumer>
     );
   }
 }

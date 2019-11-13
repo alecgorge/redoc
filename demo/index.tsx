@@ -104,7 +104,7 @@ class DemoApp extends React.Component<
             height="30px"
           />
         </Heading>
-        <RedocStandalone specUrl={proxiedUrl} options={{ scrollYOffset: 'nav', hideSingleRequestSampleTab: true, pathInMiddlePanel: true, nativeScrollbars: true, jsonSampleExpandLevel: 3, expandResponses: 'all' }} />
+        <RedocStandalone specUrl={proxiedUrl} options={{ scrollYOffset: 'nav', hideSingleRequestSampleTab: true, pathInMiddlePanel: true, nativeScrollbars: true, jsonSampleExpandLevel: 3, expandResponses: 'all', swaggerHubStyle: true }} />
       </>
     );
   }

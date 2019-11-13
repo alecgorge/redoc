@@ -48,17 +48,19 @@ export class Endpoint extends React.Component<EndpointProps, EndpointState> {
       <OptionsContext.Consumer>
         {options => (
           <OperationEndpointWrap>
-            <EndpointInfo onClick={this.toggle} expanded={expanded} inverted={inverted}>
-              <HttpVerb type={operation.httpVerb}> {operation.httpVerb}</HttpVerb>{' '}
-              <ServerRelativeURL>{operation.path}</ServerRelativeURL>
-              <ShelfIcon
-                float={'right'}
-                color={inverted ? 'black' : 'white'}
-                size={'20px'}
-                direction={expanded ? 'up' : 'down'}
-                style={{ marginRight: '-25px' }}
-              />
-            </EndpointInfo>
+            {!options.swaggerHubStyle &&
+              <EndpointInfo onClick={this.toggle} expanded={expanded} inverted={inverted}>
+                <HttpVerb type={operation.httpVerb}> {operation.httpVerb}</HttpVerb>{' '}
+                <ServerRelativeURL>{operation.path}</ServerRelativeURL>
+                <ShelfIcon
+                  float={'right'}
+                  color={inverted ? 'black' : 'white'}
+                  size={'20px'}
+                  direction={expanded ? 'up' : 'down'}
+                  style={{ marginRight: '-25px' }}
+                />
+              </EndpointInfo>
+            }
             <ServersOverlay expanded={expanded}>
               {operation.servers.map(server => {
                 const normalizedUrl = options.expandDefaultServerVariables
