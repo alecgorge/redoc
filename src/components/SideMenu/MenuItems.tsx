@@ -30,8 +30,8 @@ export class MenuItems extends React.Component<MenuItemsProps> {
           expanded={expanded}
           {...(root ? { role: 'navigation' } : {})}
         >
-          {items.map((item, idx) => (
-            <MenuItem key={idx} item={item} onActivate={this.props.onActivate} withoutChildren={options.swaggerHubStyle && item.type === 'tag'} />
+          {items.filter(i => !options.swaggerHubStyle || i.type !== 'operation').map((item, idx) => (
+            <MenuItem key={idx} item={item} onActivate={this.props.onActivate} withoutChildren={item.items.filter(i => !options.swaggerHubStyle || i.type !== 'operation').length === 0} />
           ))}
         </MenuItemUl>
         }

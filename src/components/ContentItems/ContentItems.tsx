@@ -163,8 +163,9 @@ export class OperationItem extends React.Component<{
                 <code>{path}</code>
                 &nbsp;
                 &nbsp;
-                {!options.hideSummary ? <small>{summary || ''}</small> : <></>}
                 {deprecated && <Badge type="warning"> Deprecated </Badge>}
+
+                {!options.hideSummary && summary.trim().length > 0 ? <><br /><small>{summary || ''}</small></> : <></>}
               </PathH2>
             </ExpandableHeader>
             {expanded ? <ExpandableBody>
