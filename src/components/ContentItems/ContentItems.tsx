@@ -3,9 +3,7 @@ import * as React from 'react';
 
 import { ExternalDocumentation } from '../ExternalDocumentation/ExternalDocumentation';
 import { AdvancedMarkdown } from '../Markdown/AdvancedMarkdown';
-
-import { Badge, H1, H2, MiddlePanel, Row, Section, ShelfIcon } from '../../common-elements';
-import { ShareLink } from '../../common-elements/linkify';
+import { Badge, H1, H2, MiddlePanel, Row, Section, ShareLink, ShelfIcon } from '../../common-elements';
 import { ContentItemModel } from '../../services/MenuBuilder';
 import { GroupModel, OperationModel } from '../../services/models';
 import styled from '../../styled-components';
@@ -22,7 +20,9 @@ export class ContentItems extends React.Component<{
     if (items.length === 0) {
       return null;
     }
-    return items.map(item => <ContentItem item={item} key={item.id} />);
+    return items.map(item => {
+      return <ContentItem key={item.id} item={item} />;
+    });
   }
 }
 

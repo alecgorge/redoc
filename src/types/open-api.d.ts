@@ -144,6 +144,7 @@ export interface OpenAPISchema {
 export interface OpenAPIDiscriminator {
   propertyName: string;
   mapping?: { [name: string]: string };
+  'x-explicitMappingOnly'?: boolean;
 }
 
 export interface OpenAPIMediaType {
@@ -195,7 +196,7 @@ export interface OpenAPILink {
 export type OpenAPIHeader = Omit<OpenAPIParameter, 'in' | 'name'>;
 
 export interface OpenAPICallback {
-  $ref?: string;
+  [name: string]: OpenAPIPath;
 }
 
 export interface OpenAPIComponents {

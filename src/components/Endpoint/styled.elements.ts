@@ -18,7 +18,7 @@ export const EndpointInfo = styled.div<{ expanded?: boolean; inverted?: boolean 
   padding: 10px 30px 10px ${props => (props.inverted ? '10px' : '20px')};
   border-radius: ${props => (props.inverted ? '0' : '4px 4px 0 0')};
   background-color: ${props =>
-    props.inverted ? 'transparent' : props.theme.codeSample.backgroundColor};
+    props.inverted ? 'transparent' : props.theme.codeBlock.backgroundColor};
   display: flex;
   white-space: nowrap;
   align-items: center;
@@ -34,14 +34,14 @@ export const EndpointInfo = styled.div<{ expanded?: boolean; inverted?: boolean 
   }
 `;
 
-export const HttpVerb = styled.span.attrs((props: { type: string }) => ({
+export const HttpVerb = styled.span.attrs((props: { type: string; compact?: boolean }) => ({
   className: `http-verb ${props.type}`,
-}))<{ type: string }>`
-  font-size: 0.929em;
-  line-height: 20px;
-  background-color: ${(props: any) => props.theme.colors.http[props.type] || '#999999'};
+}))<{ type: string; compact?: boolean }>`
+  font-size: ${props => (props.compact ? '0.8em' : '0.929em')};
+  line-height: ${props => (props.compact ? '18px' : '20px')};
+  background-color: ${props => props.theme.colors.http[props.type] || '#999999'};
   color: #ffffff;
-  padding: 3px 10px;
+  padding: ${props => (props.compact ? '2px 8px' : '3px 10px')};
   text-transform: uppercase;
   font-family: ${props => props.theme.typography.headings.fontFamily};
   margin: 0;
@@ -59,7 +59,6 @@ export const ServersOverlay = styled.div<{ expanded: boolean }>`
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   transition: all 0.25s ease;
-
   ${props => (props.expanded ? '' : 'transform: translateY(-50%) scaleY(0);')}
 `;
 
